@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <style>
+        /* Styles basiques pour la calculatrice */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculatrice {
+            width: 250px;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .ecran {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.5em;
+            text-align: right;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+        .boutons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .bouton {
+            padding: 20px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+        }
+        .bouton-operation {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .bouton-egale {
+            background-color: #FF9800;
+            color: white;
+            grid-column: span 2;
+        }
+        .bouton-clear {
+            background-color: #F44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculatrice">
+        <input type="text" class="ecran" id="ecran" readonly />
+        <div class="boutons">
+            <button class="bouton" onclick="ajouterValeur('7')">7</button>
+            <button class="bouton" onclick="ajouterValeur('8')">8</button>
+            <button class="bouton" onclick="ajouterValeur('9')">9</button>
+            <button class="bouton bouton-operation" onclick="ajouterValeur('/')">/</button>
+
+            <button class="bouton" onclick="ajouterValeur('4')">4</button>
+            <button class="bouton" onclick="ajouterValeur('5')">5</button>
+            <button class="bouton" onclick="ajouterValeur('6')">6</button>
+            <button class="bouton bouton-operation" onclick="ajouterValeur('*')">*</button>
+
+            <button class="bouton" onclick="ajouterValeur('1')">1</button>
+            <button class="bouton" onclick="ajouterValeur('2')">2</button>
+            <button class="bouton" onclick="ajouterValeur('3')">3</button>
+            <button class="bouton bouton-operation" onclick="ajouterValeur('-')">-</button>
+
+            <button class="bouton" onclick="ajouterValeur('0')">0</button>
+            <button class="bouton" onclick="ajouterValeur('.')">.</button>
+            <button class="bouton bouton-egale" onclick="calculer()">=</button>
+            <button class="bouton bouton-operation" onclick="ajouterValeur('+')">+</button>
+
+            <button class="bouton bouton-clear" onclick="effacer()">C</button>
+        </div>
+    </div>
+
+    <script>
+        function ajouterValeur(valeur) {
+            document.getElementById("ecran").value += valeur;
+        }
+
+        function calculer() {
+            try {
+                let resultat = eval(document.getElementById("ecran").value);
+                document.getElementById("ecran").value = resultat;
+            } catch (e) {
+                document.getElementById("ecran").value = "Erreur";
+            }
+        }
+
+        function effacer() {
+            document.getElementById("ecran").value = "";
+        }
+    </script>
+</body>
+</html>
